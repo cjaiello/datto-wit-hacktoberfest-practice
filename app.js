@@ -25,7 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //app.use('/', indexRouter);
 
-app.use('/', function(req, res, next) {
+app.get('/', function(req, res, next) {
   const ips = ['8.41.72.157','8.33.72.250','8.41.72.250','47.19.105.250','8.12.58.0']
   var host = req.headers['host'];
   console.log(`Host is ${host}`);
