@@ -34,7 +34,7 @@ app.use('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
   if (!ips.includes(forwardedIpsStr)) {
     console.log(`!ips.includes(forwardedIpsStr):  ${ips} does not include ${forwardedIpsStr}`);
-    res.redirect('error');
+    res.end();
   } else {
     console.log(`ips.includes(forwardedIpsStr):  ${ips} does include ${forwardedIpsStr}`);
     return indexRouter;
