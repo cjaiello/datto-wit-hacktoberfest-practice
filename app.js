@@ -8,7 +8,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 
-const ips = ['209.94.142.65']
+const ips = ['209.94.142.65','10.1.85.18','10.1.26.206']
 
 var app = express();
 app.use(ipfilter(ips))
