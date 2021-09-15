@@ -16,6 +16,7 @@ jobs:
     - name: Curl to get IP address
       id: get_ip
       run: |
+        echo "$(curl --request GET --url https://api.ipify.org/)"
         echo "::set-output name=IP_ADDRESS::$(curl --request GET --url https://api.ipify.org/)"
         echo "${{ steps.get_ip.outputs.IP_ADDRESS }}"
         echo ${{ steps.get_ip.outputs.IP_ADDRESS }}
