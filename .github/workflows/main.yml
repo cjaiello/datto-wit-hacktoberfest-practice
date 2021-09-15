@@ -14,6 +14,7 @@ jobs:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
        
     - name: Curl to get IP address
+      id: get_ip
       run: |
         echo "::set-output name=IP_ADDRESS::$(curl --request GET --url https://api.ipify.org/)"
 
@@ -22,7 +23,7 @@ jobs:
       with:
         azcliversion: 2.0.72
         inlineScript: |
-            az storage account network-rule add -g DattoWitHacktoberfest2021Practice -n withacktoberfestpractice --action Allow --ip-address IP_ADDRESS
+            az storage account network-rule add -g DattoWitHacktoberfest2021Practice -n withacktoberfestpractice --action Allow --ip-address ${{ steps.get_ip.outputs.IP_ADDRESS }}
             
     - name: Upload to blob storage
       uses: azure/CLI@v1
