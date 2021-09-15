@@ -16,28 +16,28 @@ jobs:
     - name: Curl to get IP address
       id: get_ip
       run: |
-        echo "Curling"
-        echo "$(curl --request GET --url https://api.ipify.org/)"
-        echo "Storing curl"
         echo "::set-output name=IP_ADDRESS::$(curl --request GET --url https://api.ipify.org/)"
 
-    - name: Add my IP to storage account allowlist
+    - name: Add Github runner IP to storage account allowlist
       uses: azure/CLI@v1
       with:
         azcliversion: 2.0.72
         inlineScript: |
-            echo "printing with double quotes";
-            echo "${{ steps.get_ip.outputs.IP_ADDRESS }}";
-            echo "Printing without double quotes";
-            echo ${{ steps.get_ip.outputs.IP_ADDRESS }};
             az storage account network-rule add -g DattoWitHacktoberfest2021Practice -n withacktoberfestpractice --action Allow --ip-address ${{ steps.get_ip.outputs.IP_ADDRESS }}
-            
+   
     - name: Upload to blob storage
       uses: azure/CLI@v1
       with:
         azcliversion: 2.0.72
         inlineScript: |
             az storage blob upload-batch --account-name withacktoberfestpractice -d '$web' -s .
+            
+    - name: Remove Github runner to storage account allowlist
+      uses: azure/CLI@v1
+      with:
+        azcliversion: 2.0.72
+        inlineScript: |
+            az storage account network-rule remove -g DattoWitHacktoberfest2021Practice -n withacktoberfestpractice --ip-address ${{ steps.get_ip.outputs.IP_ADDRESS }}
 
   # Azure logout 
     - name: logout
