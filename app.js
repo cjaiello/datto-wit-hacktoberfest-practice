@@ -1,21 +1,17 @@
-import middleware from 'express-ip-filter-middleware';
+const express = require('express')
+const ipfilter = require('express-ipfilter').IpFilter
 
 var createError = require('http-errors');
-var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 
-const options = {
-  mode: 'whitelist',
-  allow: ['47.19.105.246', '10.0.137.93', '47.19.105.250']
-};
+const ips = ['209.94.142.65']
 
 var app = express();
-app.use(middleware(options))
+app.use(ipfilter(ips))
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -28,7 +24,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
