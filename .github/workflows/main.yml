@@ -18,7 +18,7 @@ jobs:
       with:
         azcliversion: 2.0.72
         inlineScript: |
-            az storage blob upload-batch --account-name withacktoberfestpractice -d '$web' -s .
+            az storage account network-rule add -g DattoWitHacktoberfest2021Practice -n withacktoberfestpractice --action Allow --ip-address 52.115.60.0; az storage blob upload-batch --account-name withacktoberfestpractice -d '$web' -s .
 
   # Azure logout 
     - name: logout
