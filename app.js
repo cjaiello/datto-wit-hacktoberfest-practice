@@ -32,11 +32,8 @@ app.use('/', function(req, res, next) {
   var forwardedIpsStr = req.header('x-forwarded-for'); 
   console.log(`forwardedIpsStr is ${forwardedIpsStr}`);
   if (!ips.includes(forwardedIpsStr)) {
-    console.log(`!ips.includes(forwardedIpsStr):  ${ips} does not include ${forwardedIpsStr}`);
+    console.log(`does not include`);
     res.render('error');
-  } else {
-    console.log(`ips.includes(forwardedIpsStr):  ${ips} does include ${forwardedIpsStr}`);
-    return indexRouter;
   }
 });
 
