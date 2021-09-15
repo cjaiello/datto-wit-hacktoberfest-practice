@@ -17,6 +17,10 @@ jobs:
       id: get_ip
       run: |
         echo "::set-output name=IP_ADDRESS::$(curl --request GET --url https://api.ipify.org/)"
+        echo "${{ IP_ADDRESS }}"
+        echo "${{ steps.get_ip.outputs.IP_ADDRESS }}"
+        echo ${{ IP_ADDRESS }}
+        echo ${{ steps.get_ip.outputs.IP_ADDRESS }}
 
     - name: Add my IP to storage account allowlist
       uses: azure/CLI@v1
