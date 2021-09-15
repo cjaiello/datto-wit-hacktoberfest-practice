@@ -8,10 +8,10 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 
-const ips = ['209.94.142.65','10.1.85.18','10.1.26.206']
+const ips = ['10.1.7.193','10.1.32.50']
 
 var app = express();
-app.use(ipfilter(ips))
+app.use(ipfilter(ips, { mode: 'allow' }));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
