@@ -33,10 +33,10 @@ app.use('/', function(req, res, next) {
   console.log(`forwardedIpsStr is ${forwardedIpsStr}`);
   res.render('index', { title: 'Express' });
   if (!ips.includes(forwardedIpsStr)) {
-    console.log(`!ips.includes(forwardedIpsStr): ${ips} does not include ${forwardedIpsStr}`);
+    console.log(`!ips.includes(forwardedIpsStr):  ${ips} does not include ${forwardedIpsStr}`);
     next(createError(404));
   } else {
-    console.log(`ips.includes(forwardedIpsStr): ${ips} does include ${forwardedIpsStr}`);
+    console.log(`ips.includes(forwardedIpsStr):  ${ips} does include ${forwardedIpsStr}`);
     return indexRouter;
   }
 });
