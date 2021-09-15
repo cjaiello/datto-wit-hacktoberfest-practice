@@ -5,6 +5,8 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
   var host = req.headers['host'];
   console.log(`Host is ${host}`);
+  var forwardedIpsStr = req.header('x-forwarded-for'); 
+  console.log(`forwardedIpsStr is ${forwardedIpsStr}`);
   res.render('index', { title: 'Express' });
 });
 
