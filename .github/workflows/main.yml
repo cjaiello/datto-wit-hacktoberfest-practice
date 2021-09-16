@@ -1,0 +1,46 @@
+name: Blob storage website CI
+
+on:
+    push:
+        branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:            
+    - uses: actions/checkout@v2
+    - uses: azure/login@v1
+      with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+       
+    - name: Curl to get IP address
+      id: get_ip
+      run: |
+        echo "::set-output name=IP_ADDRESS::$(curl --request GET --url https://api.ipify.org/)"
+
+    - name: Add Github runner IP to storage account allowlist
+      uses: azure/CLI@v1
+      with:
+        azcliversion: 2.0.72
+        inlineScript: |
+            az storage account network-rule add -g DattoWitHacktoberfest2021Practice -n withacktoberfestpractice --action Allow --ip-address ${{ steps.get_ip.outputs.IP_ADDRESS }}
+   
+    - name: Upload to blob storage
+      uses: azure/CLI@v1
+      with:
+        azcliversion: 2.0.72
+        inlineScript: |
+            az storage blob upload-batch --account-name withacktoberfestpractice -d '$web' -s . --account-key ${{ secrets.AZURE_ACCOUNT_KEY }}
+            
+    - name: Remove Github runner to storage account allowlist
+      uses: azure/CLI@v1
+      with:
+        azcliversion: 2.0.72
+        inlineScript: |
+            az storage account network-rule remove -g DattoWitHacktoberfest2021Practice -n withacktoberfestpractice --ip-address ${{ steps.get_ip.outputs.IP_ADDRESS }}
+
+  # Azure logout 
+    - name: logout
+      run: |
+            az logout
+      if: always()
