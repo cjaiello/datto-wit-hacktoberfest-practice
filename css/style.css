@@ -25,14 +25,14 @@ body {
   text-align: center;
   width:  100%;
   background-color: #202824;
-  padding:  1rem;
+  padding:  16px;
 }
 
 .card {
   position: relative;
   display: inline-block;
-  height: 16rem;
-  width: 16rem;
+  height: 256px;
+  width: 288px;
   text-decoration: none;    
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -40,32 +40,32 @@ body {
   vertical-align: top;
 }
 
-.back {
+.card-back {
   background-color: #B53A25;
 }
 
-.front,
-.back {
-  margin: 1rem;
+.card-front,
+.card-back {
+  margin: 16px;
   text-align: center;
   border-radius: calc(var(--curve) * 1px);
 }
 
 .inner {
-  margin-top: 1rem;
+  margin-top: 16px;
   background-color: #ffffff;
-  margin-bottom: 2rem;
-  padding: 0.5rem;
+  margin-bottom: 32px;
+  padding: 8px;
   font-size: 12px;
-  height: 8rem;
+  height: 128px;
 }
 
 .name {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  padding-top: 16px;
+  padding-bottom: 16px;
   text-align: center;
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 20px;
   color: #ffffff;
 }
 
@@ -85,8 +85,8 @@ img {
 }
 
 .member-name {
-  padding-top: 2rem;
+  padding-top: 32px;
   text-align: center;
   font-weight: bold;
-  font-size: 1.5rem;
+  font-size: 24px;
 }
