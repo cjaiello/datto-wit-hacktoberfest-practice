@@ -40,12 +40,12 @@ body {
   vertical-align: top;
 }
 
-.card-back {
+.back {
   background-color: #B53A25;
 }
 
-.card-front,
-.card-back {
+.front,
+.back {
   margin: 16px;
   text-align: center;
   border-radius: calc(var(--curve) * 1px);
