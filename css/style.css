@@ -6,11 +6,11 @@ body {
   margin:  0;
   background-color: #f4f0e1;
   color: #000000;
-  font-size: 16px;
-  font-family: "Lato", "Lucida Grande", "Tahoma", sans-serif;
+  font-size: 18px;
+  font-family: Gill Sans,Gill Sans MT,Calibri,sans-serif;
 }
 
-.subtitle {
+.header-text {
   color: #91A88C;
 }
 
