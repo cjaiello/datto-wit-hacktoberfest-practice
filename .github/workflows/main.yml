@@ -30,7 +30,7 @@ jobs:
       with:
         azcliversion: 2.0.72
         inlineScript: |
-            sleep 30;
+            sleep 60;
             az storage blob upload-batch --account-name withacktoberfestpractice -d '$web' -s . --account-key ${{ secrets.AZURE_ACCOUNT_KEY }}
             
     - name: Remove Github runner to storage account allowlist
